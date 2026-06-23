@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K. Jai Surya | AWS DevOps Engineer</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#0b1120;
+color:white;
+}
+
+.terminal{
+background:#0d1117;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 0 25px rgba(236,72,153,.25);
+font-family:monospace;
+}
+
+.terminal-header{
+background:#161b22;
+padding:12px;
+display:flex;
+gap:8px;
+}
+
+.red,
+.yellow,
+.green{
+width:14px;
+height:14px;
+border-radius:50%;
+}
+
+.red{
+background:#ff5f56;
+}
+
+.yellow{
+background:#ffbd2e;
+}
+
+.green{
+background:#27c93f;
+}
+
+.terminal-body{
+padding:25px;
+font-size:16px;
+line-height:1.8;
+}
+
+.prompt{
+color:#06b6d4;
+font-weight:bold;
+}
+
+.success{
+color:#22c55e;
+}
+
+.bg-icons{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:-1;
+overflow:hidden;
+}
+
+.bg-icons i{
+position:absolute;
+font-size:120px;
+color:rgba(255,255,255,0.03);
+animation:float 20s linear infinite;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(100vh) rotate(0deg);
+}
+
+100%{
+transform:translateY(-150px) rotate(360deg);
+}
+
+}
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:50px;
+background:
+linear-gradient(
+135deg,
+#0b1120,
+#111827,
+#1e3a8a
+);
+}
+
+.hero-content{
+display:flex;
+align-items:center;
+gap:60px;
+flex-wrap:wrap;
+max-width:1200px;
+}
+
+.profile-img{
+width:280px;
+height:280px;
+border-radius:50%;
+object-fit:cover;
+object-position:center 0px;
+border:6px solid #f59e0b;
+box-shadow:0 0 30px rgba(245,158,11,.7);
+}
+
+.hero-text h1{
+font-size:60px;
+}
+
+.hero-text h2{
+color:#f59e0b;
+margin:10px 0;
+}
+
+.hero-text p{
+font-size:18px;
+margin:20px 0;
+color:#d1d5db;
+}
+
+.btn{
+display:inline-block;
+padding:12px 22px;
+background:#06b6d4;
+color:white;
+text-decoration:none;
+border-radius:10px;
+margin:10px;
+font-weight:bold;
+transition:.3s;
+box-shadow:0 0 15px rgba(56,189,248,.5);
+}
+
+.btn:hover{
+background:#ec4899;
+color:white;
+transform:translateY(-3px);
+box-shadow:0 0 25px rgba(56,189,248,.8);
+}
+.section{
+padding:80px 10%;
+}
+
+.section-title{
+font-size:36px;
+color:#f59e0b;
+margin-bottom:30px;
+text-align:center;
+}
+
+.card{
+background:#111827;
+padding:25px;
+border-radius:15px;
+margin-bottom:25px;
+box-shadow:0 0 15px rgba(0,0,0,.4);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.skill-box{
+background:#1f2937;
+padding:20px;
+border-radius:15px;
+}
+
+.skill-box h3{
+color:#60a5fa;
+margin-bottom:10px;
+}
+
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:25px;
+}
+
+.project-card{
+background:#111827;
+padding:25px;
+border-radius:15px;
+border-left:5px solid #f59e0b;
+}
+
+.project-card h3{
+margin-bottom:15px;
+color:#60a5fa;
+}
+
+.tech-badges{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.tech-badges span{
+background:linear-gradient(
+90deg,
+#06b6d4,
+#8b5cf6
+);
+color:white;
+padding:6px 14px;
+border-radius:20px;
+font-size:14px;
+font-weight:600;
+box-shadow:0 0 10px rgba(139,92,246,.4);
+transition:0.3s;
+}
+
+.tech-badges span:hover{
+transform:scale(1.08);
+background:linear-gradient(
+90deg,
+#8b5cf6,
+#ec4899
+);
+box-shadow:0 0 15px rgba(236,72,153,.7);
+}
+
+.cert-img{
+width:100%;
+max-width:800px;
+border-radius:10px;
+display:block;
+margin:auto;
+}
+
+.contact{
+text-align:center;
+}
+
+.contact a{
+color:#60a5fa;
+text-decoration:none;
+}
+
+footer{
+text-align:center;
+padding:25px;
+background:#111827;
+margin-top:50px;
+}
+
+.tech-icons{
+display:flex;
+align-items:center;
+gap:30px;
+margin:30px 0;
+}
+
+.tech-icons i{
+font-size:70px;
+color:#f59e0b;
+cursor:pointer;
+transition:0.3s;
+text-shadow:0 0 20px rgba(245,158,11,.8);
+}
+
+.tech-icons i:hover{
+transform:scale(1.2);
+color:#ffb300;
+text-shadow:0 0 30px rgba(255,179,0,1);
+}
+
+.progress{
+background:#111827;
+height:28px;
+border-radius:30px;
+overflow:hidden;
+margin-top:8px;
+}
+
+.progress-fill{
+height:100%;
+background:linear-gradient(90deg,#8b5cf6,#ec4899);
+box-shadow:0 0 15px #ec4899;
+color:white;
+font-weight:bold;
+text-align:center;
+line-height:28px;
+border-radius:30px;
+transition:1s;
+}
+@media(max-width:768px){
+
+.hero{
+height:auto;
+padding:80px 20px;
+}
+
+.hero-text h1{
+font-size:40px;
+}
+
+.profile-img{
+width:220px;
+height:220px;
+}
+
+
+
+ 
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<img src="JAISURYA.K.png" class="profile-img">
+
+<div class="hero-text">
+
+<h1>K. JAI SURYA</h1>
+
+<h2>AWS DevOps Engineer</h2>
+
+<div class="tech-icons">
+
+<i class="fa-brands fa-aws"></i>
+
+<i class="fa-brands fa-docker"></i>
+
+<i class="fa-brands fa-github"></i>
+
+<i class="fa-brands fa-linux"></i>
+
+<i class="fa-solid fa-cloud"></i>
+
+</div>
+
+<a href="resume.pdf" class="btn">
+<i class="fa-solid fa-file"></i> Resume
+</a>
+
+<a href="https://github.com/jaisurya003" class="btn">
+<i class="fa-brands fa-github"></i> GitHub
+</a>
+
+<a href="https://linkedin.com/in/jai-surya-k-89a948319" class="btn">
+<i class="fa-brands fa-linkedin"></i> LinkedIn
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="skills-grid">
+
+<div class="skill-box">
+<h3>15+</h3>
+<p>AWS Services</p>
+</div>
+
+<div class="skill-box">
+<h3>5+</h3>
+<p>DevOps Tools</p>
+</div>
+
+<div class="skill-box">
+<h3>2</h3>
+<p>Major Projects</p>
+</div>
+
+<div class="skill-box">
+<h3>1</h3>
+<p>Certification</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2 class="section-title">PROFESSIONAL SUMMARY</h2>
+
+<div class="card">
+
+<p>
+
+Motivated AWS DevOps Engineer with hands-on experience in AWS Cloud, CI/CD automation, containerization, Kubernetes orchestration, and Infrastructure as Code. Skilled in AWS services such as EC2, S3, IAM, VPC, EKS, ECR, RDS, and CloudWatch, along with DevOps tools including Jenkins, Docker, Kubernetes, Terraform, Ansible, Git, Argo CD, SonarQube, Trivy, Prometheus, and Grafana. Experienced in building automated deployment pipelines, managing cloud infrastructure, and implementing scalable, secure, and reliable solutions. Passionate about cloud technologies, automation, and continuous improvement, with a strong commitment to learning and delivering high-quality results.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section class="section">
+
+<h2 class="section-title">TECHNICAL SKILLS</h2>
+
+<div class="skills-grid">
+
+<div class="skill-box">
+<h3>☁ AWS Cloud</h3>
+<p>
+EC2, IAM, VPC, S3, EBS, EFS, RDS, EKS, ECR,
+CloudWatch, Auto Scaling, ALB, Lambda,
+CloudFormation
+</p>
+</div>
+
+<div class="skill-box">
+<h3>⚙ DevOps & CI/CD</h3>
+<p>
+Jenkins, Docker, Kubernetes,
+Terraform, Ansible, Argo CD,
+CI/CD Pipeline Automation
+</p>
+</div>
+
+<div class="skill-box">
+<h3>🔄 Version Control</h3>
+<p>
+Git, GitHub
+</p>
+</div>
+
+<div class="skill-box">
+<h3>🖥 Operating Systems</h3>
+<p>
+Linux (Ubuntu, Amazon Linux)
+</p>
+</div>
+
+<div class="skill-box">
+<h3>📊 Monitoring</h3>
+<p>
+Prometheus, Grafana,
+CloudWatch
+</p>
+</div>
+
+<div class="skill-box">
+<h3>🔐 Security & Quality</h3>
+<p>
+SonarQube, Trivy
+</p>
+</div>
+
+<div class="skill-box">
+<h3>💻 Programming & Scripting</h3>
+<p>
+Python, Java, Shell Scripting
+</p>
+</div>
+
+<div class="skill-box">
+<h3>🗄 Database</h3>
+<p>
+MySQL
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">SKILL PROFICIENCY</h2>
+
+<div class="card">
+
+<p>☁ AWS Cloud</p>
+<div class="progress">
+<div class="progress-fill" style="width:95%">95%</div>
+</div>
+
+<br>
+
+<p>🐳 Docker</p>
+<div class="progress">
+<div class="progress-fill" style="width:90%">90%</div>
+</div>
+
+<br>
+
+<p>☸ Kubernetes</p>
+<div class="progress">
+<div class="progress-fill" style="width:85%">85%</div>
+</div>
+
+<br>
+
+<p>⚙ Jenkins</p>
+<div class="progress">
+<div class="progress-fill" style="width:90%">90%</div>
+</div>
+
+<br>
+
+<p>🏗 Terraform</p>
+<div class="progress">
+<div class="progress-fill" style="width:85%">85%</div>
+</div>
+
+<br>
+
+<p>🔄 Ansible</p>
+<div class="progress">
+<div class="progress-fill" style="width:85%">85%</div>
+</div>
+
+<br>
+
+<p>📂 Git & GitHub</p>
+<div class="progress">
+<div class="progress-fill" style="width:90%">90%</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section class="section">
+
+<h2 class="section-title">PROJECTS</h2>
+
+<div class="projects">
+
+<div class="project-card">
+
+<h3>🚀 END-TO-END CI/CD PIPELINE ON AMAZON EKS</h3>
+
+<p>
+
+Built and automated a complete CI/CD pipeline using GitHub, Jenkins, SonarQube, Trivy, Docker, AWS ECR, Argo CD, Kubernetes, and Amazon EKS.
+
+</p>
+
+<br>
+
+<div class="tech-badges">
+
+<span>AWS</span>
+<span>Jenkins</span>
+<span>Docker</span>
+<span>Kubernetes</span>
+<span>EKS</span>
+<span>ECR</span>
+<span>Argo CD</span>
+<span>SonarQube</span>
+<span>Trivy</span>
+
+</div>
+
+<br>
+
+<ul>
+
+<li>Automated code checkout from GitHub</li>
+
+<li>Integrated SonarQube for code quality analysis</li>
+
+<li>Scanned Docker images using Trivy</li>
+
+<li>Built and pushed Docker images to AWS ECR</li>
+
+<li>Implemented GitOps workflow with Argo CD</li>
+
+<li>Automated deployments to Amazon EKS</li>
+
+</ul>
+<br>
+
+<a href="https://github.com/jaisurya003/AWS-DEVOPS-PROJECT"
+target="_blank"
+class="btn">
+
+<i class="fa-brands fa-github"></i>
+View Repository
+
+</a>
+
+</div>
+
+<div class="project-card">
+
+<h3>🤖 FACE & HELMET DETECTION ATTENDANCE SYSTEM</h3>
+
+<p>
+
+Academic Project using YOLOv8, Face Recognition, and Flutter.
+
+</p>
+
+<br>
+
+<div class="tech-badges">
+
+<span>YOLOv8</span>
+<span>Python</span>
+<span>OpenCV</span>
+<span>Face Recognition</span>
+<span>Flutter</span>
+<span>Firebase</span>
+
+</div>
+
+<br>
+
+<ul>
+
+<li>Automated attendance using face recognition</li>
+
+<li>Implemented helmet detection using YOLOv8</li>
+
+<li>Integrated real-time camera input</li>
+
+<li>Built Flutter mobile application</li>
+
+<li>Improved attendance accuracy and safety monitoring</li>
+
+</ul>
+
+<br>
+
+<a href="https://github.com/jaisurya003/Helmet-and-Face-detection-project1"
+target="_blank"
+class="btn">
+
+<i class="fa-brands fa-github"></i>
+View Repository
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CERTIFICATIONS -->
+
+<section class="section">
+
+<h2 class="section-title">CERTIFICATIONS</h2>
+
+<div class="card">
+
+<img src="certificate.jpeg" class="cert-img">
+
+<br><br>
+
+<h3 style="text-align:center;color:#60a5fa;">
+AWS & DevOps Professional Training Certification (Grade A)
+</h3>
+
+<p style="text-align:center;color:#d1d5db;">
+Successfully completed 5 Months of AWS & DevOps Professional Training
+with hands-on experience in Cloud Infrastructure, CI/CD, Containerization,
+Kubernetes, Infrastructure as Code, Monitoring and Automation.
+</p>
+
+
+
+</div>
+
+</section>
+
+
+<!-- GITHUB -->
+
+<section class="section">
+
+<h2 class="section-title">AWS DEVOPS HANDS-ON EXPERIENCE</h2>
+
+<div class="card" style="text-align:center;">
+
+
+
+<br>
+
+<ul style="line-height:1.8;">
+
+<li> Hands-on experience with AWS services including EC2, S3, IAM, VPC, EBS, EFS, RDS, EKS, ECR, CloudWatch, Auto Scaling, and Load Balancers.
+
+</li>
+
+<li> Worked with DevOps tools such as Jenkins, Docker, Kubernetes, Terraform, Ansible, Argo CD, Git, GitHub, SonarQube, and Trivy.
+
+</li>
+
+<li> Built and implemented an End-to-End CI/CD Pipeline on Amazon EKS using GitHub, Jenkins, Docker, AWS ECR, Argo CD, and Kubernetes.
+
+</li>
+
+
+</ul>
+
+
+<br>
+
+<a href="https://github.com/jaisurya003/AWS-DevOps-HANDS-ON-DOCUMENTS"
+class="btn">
+
+<i class="fa-brands fa-github"></i>
+View Repository
+
+</a>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">GITHUB PROFILE</h2>
+
+<div class="card">
+
+<img src="github-profile.png"
+style="
+width:100%;
+border-radius:15px;
+">
+
+<br><br>
+
+<p style="text-align:center;">
+
+Active GitHub profile containing AWS cloud implementations,
+DevOps projects, Kubernetes deployments, Infrastructure as Code,
+automation workflows, and hands-on learning repositories.
+
+</p>
+
+<br>
+
+<div style="text-align:center;">
+
+<a href="https://github.com/jaisurya003"
+class="btn">
+
+<i class="fa-brands fa-github"></i>
+Visit GitHub Profile
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">EDUCATION</h2>
+
+<div class="card">
+
+<h3 style="color:#60a5fa;">
+B.E - Computer Science and Engineering
+</h3>
+
+<br>
+
+<p>
+Anand Institute of Higher Technology
+</p>
+
+<p>
+2021 - 2025
+</p>
+
+<p>
+CGPA: 8.1
+</p>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="section">
+
+<h2 class="section-title">CONTACT</h2>
+
+<div class="card contact">
+
+<p>
+📧 Email:
+<a href="mailto:jaisuryajai003@gmail.com">
+jaisuryajai003@gmail.com
+</a>
+</p>
+
+<br>
+
+<p>
+💻 GitHub:
+<a href="https://github.com/jaisurya003">
+github.com/jaisurya003
+</a>
+</p>
+
+<br>
+
+<p>
+🔗 LinkedIn:
+<a href="https://linkedin.com/in/jai-surya-k-89a948319">
+linkedin.com/in/jai-surya-k-89a948319
+</a>
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+© 2026 K. Jai Surya | AWS DevOps Engineer
+</p>
+
+</footer>
+
+
+<!-- SIMPLE ANIMATION -->
+
+<script>
+
+const cards = document.querySelectorAll(
+'.card,.project-card,.skill-box'
+);
+
+const observer = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity='1';
+entry.target.style.transform='translateY(0px)';
+
+}
+
+});
+
+});
+
+cards.forEach(card => {
+
+card.style.opacity='0';
+card.style.transform='translateY(40px)';
+card.style.transition='all 0.8s ease';
+
+observer.observe(card);
+
+});
+
+</script>
+
+</body>
+</html>
